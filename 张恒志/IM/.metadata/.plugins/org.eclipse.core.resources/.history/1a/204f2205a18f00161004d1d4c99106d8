@@ -1,0 +1,39 @@
+package cn.gongly.server.model;
+/**
+ * 服务器与某个客户端的通讯线程
+ * @author MSI
+ *
+ */
+
+import java.io.*;
+import java.net.*;
+
+import cn.gongly.common.Massage;
+
+public class ServerClientThread extends Thread{
+
+	Socket s;
+	
+	public void SerConClientThread(Socket s){
+		//连接赋给S
+		this.s=s;
+	}
+	
+	@Override
+	public void run() {
+		while(true){
+			//接收客户端的信息
+			try {
+				ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+				Massage m =(Massage) ois.readObject();
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+}

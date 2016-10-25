@@ -1,0 +1,5 @@
+package cn.gongly.client.model;
+
+public class QqClineLoginCheck {
+
+}

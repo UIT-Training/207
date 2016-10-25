@@ -1,0 +1,17 @@
+package cn.gongly.client.model;
+
+import cn.gongly.common.*;
+
+public class QqClineUser {
+	
+	public boolean checkUser(User u){
+		boolean b=false;
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return b;
+	}
+}

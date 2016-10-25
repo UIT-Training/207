@@ -1,0 +1,56 @@
+package cn.gongly.server.model;
+/**
+ * 服务器与某个客户端的通讯线程
+ * @author MSI
+ *
+ */
+
+import java.io.*;
+import java.net.*;
+
+import cn.gongly.common.Massage;
+import cn.gongly.common.MessageType;
+
+public class ServerConClientThread extends Thread{
+
+	Socket s;
+	
+	public   ServerConClientThread(Socket s){
+		//连接赋给S
+		this.s=s;
+	}
+	
+	@Override
+	public void run() {
+		while(true){
+			//接收客户端的信息
+			try {
+				ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+				Massage m =(Massage) ois.readObject();
+				
+				System.out.println(m.getSender()+"给"+m.getGetter()+"说"+m.getCon());
+				//对从客户端取得的消息进行类型判断,然后做相应的处理
+				if(m.getMesType().equals(MessageType.message_comm_mes)){
+				//待会转发
+				//取得通讯人的线程
+				ServerConClientThread sc= ManageClientThread.getaddClientThread(m.getGetter());
+				ObjectOutputStream oos = new ObjectOutputStream(sc.s.getOutputStream());
+				oos.writeObject(m);
+				}else if(m.getMesType().equals(MessageType.message_get_onLineFriend)){
+					//把服务器的好友给他返回
+					String res=ManageClientThread.getAllonLineUserId();
+					Massage m2 = new Massage();
+					m2.setMesType(MessageType.message_ret_onLineFriend);
+					m2.setCon(res);
+					m2.setGetter(m.getSender());
+					ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+					oos.writeObject(m2);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+}

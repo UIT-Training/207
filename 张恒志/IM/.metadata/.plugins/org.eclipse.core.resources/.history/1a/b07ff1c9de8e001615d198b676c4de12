@@ -1,0 +1,36 @@
+package cn.gongly.server.model;
+/**
+ * QQ服务器,它在监听,等待
+ * @author MSI
+ *
+ */
+import java.net.*;
+import java.io.*;
+import java.util.*;
+
+public class MyQqServer {
+	
+	
+	
+	public MyQqServer() {
+		
+		try {
+			//监听
+			ServerSocket ss = new ServerSocket(9999);
+			//阻塞,等待连接
+			Socket s=ss.accept();
+			
+			//接收客户端的信息
+			
+			//BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
+			//String info =br.readLine();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}finally{
+			
+		}
+	}
+}
