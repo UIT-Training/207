@@ -1,8 +1,0 @@
-package cn.gongly.client.model;
-
-public class QqClineLoginCheck {
-	
-	public boolean checkUser(User u){
-		
-	}
-}

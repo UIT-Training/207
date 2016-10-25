@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;cn.gongly.common.Massage&apos; to &apos;Message&apos;&#x0D;&#x0A;- Original project: &apos;QqServer&apos;&#x0D;&#x0A;- Original element: &apos;cn.gongly.common.Massage&apos;&#x0D;&#x0A;- Renamed element: &apos;cn.gongly.common.Message&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Massage&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;cn.gongly.common{Massage.java[Massage" matchStrategy="1" name="Message" qualified="false" references="true" similarDeclarations="false" stamp="1476599945145" textual="false" version="1.0"/>
-</session>
