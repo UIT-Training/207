@@ -154,7 +154,7 @@ public class Login extends JFrame {
 		this.add(headLabel, "North");
 		this.add(panel, "Center");
 
-//		this.setIconImage(new ImageIcon("image/im.gif").getImage());
+		this.setIconImage(new ImageIcon("image/head.jpg").getImage());
 		this.setSize(430, 330);
 		this.setResizable(false);
 		this.setVisible(true);

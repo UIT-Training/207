@@ -67,6 +67,7 @@ public class Register extends JFrame implements ActionListener {
 		jp2.add(cancle);
 		jp2.add(send);
 
+		this.setIconImage(new ImageIcon("image/head.jpg").getImage());
 		this.setLayout(new BorderLayout());
 		this.add(new JLabel(new ImageIcon("image/logo.jpg")), "North");
 		this.add(jp1, "Center");

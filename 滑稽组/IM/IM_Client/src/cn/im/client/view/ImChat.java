@@ -45,7 +45,7 @@ public class ImChat extends JFrame implements ActionListener {
 		this.add(jp,BorderLayout.SOUTH);
 		
 		this.setTitle(myId+"正在和"+friend+"聊天");
-		this.setIconImage(new ImageIcon("image/qq.gif").getImage());
+		this.setIconImage(new ImageIcon("image/head.jpg").getImage());
 		this.setVisible(true);
 		this.setBounds(500, 200, 350, 300);
 	}

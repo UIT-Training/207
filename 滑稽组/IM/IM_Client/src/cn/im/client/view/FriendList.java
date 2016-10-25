@@ -28,9 +28,9 @@ import cn.im.common.Message;
  */
 public class FriendList extends JFrame implements ActionListener,MouseListener{
 	
-	private JPanel jphy,jpms,jphm;//定义三个panel，分别是好友，陌生人，黑名单三个卡片
-	private JButton hyjb1,hyjb2,hyjb3;//三个按钮分别是 好友卡片的 好友，陌生人，黑名单三个按钮
-	private JButton msjb1,msjb2,msjb3;//三个按钮分别是 陌生人卡片的 好友，陌生人，黑名单
+	private JPanel jphy,jpms,jphm;//三个panel，分别是好友，陌生人，黑名单三个卡片
+	private JButton hyjb1,hyjb2,hyjb3;// 好友卡片的 好友，陌生人，黑名单三个按钮
+	private JButton msjb1,msjb2,msjb3;// 陌生人卡片的 好友，陌生人，黑名单
 	
 	private JPanel hyjp1,hyjp2;
 	private JPanel msjp1,msjp2;
@@ -53,12 +53,12 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		jphy.add(hyjb1,"North");
 		
 		hyjp1= new JPanel(new GridLayout(50,1,4,4));
-		hyjls=new JLabel[50];//定义一个标签数组用来存放好友们
+		hyjls=new JLabel[50];
 		for (int i = 0; i < hyjls.length; i++) {
-			hyjls[i]= new JLabel(i+1+"",new ImageIcon("image/mm.jpg"),JLabel.LEFT);
+			hyjls[i]= new JLabel(i+1+"",new ImageIcon("image/head.jpg"),JLabel.LEFT);
 			hyjp1.add(hyjls[i]);
 			if(!(hyjls[i].getText().equals(username)))
-				hyjls[i].setEnabled(false);//只要不是自己，全部设置为灰色
+				hyjls[i].setEnabled(false);//只要不是 全部设置为灰色
 			
 			hyjls[i].addMouseListener(this);
 		}
@@ -70,7 +70,7 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		jphy.add(hyjp2,BorderLayout.SOUTH);
 		
 		/*
-		 * 安排布局第二个卡片
+		 * 布局第二个卡片
 		 */
 		jpms= new JPanel(new BorderLayout());
 		msjb1= new JButton("好友");
@@ -88,13 +88,14 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		msjp2= new JPanel(new GridLayout(50,1,4,4));
 		msjls=new JLabel[50];//定义一个标签数组用来存放陌生人们
 		for (int i = 0; i < msjls.length; i++) {
-			msjls[i]= new JLabel(i+1+"",new ImageIcon("images/mm.jpg"),JLabel.LEFT);//设置图片在文字左侧
+			msjls[i]= new JLabel(i+1+"",new ImageIcon("image/head.jpg"),JLabel.LEFT);//设置图片在文字左侧
 			msjp2.add(msjls[i]);
 			if(!(msjls[i].getText().equals(username)))
-				msjls[i].setEnabled(false);//只要不是自己，全部设置为灰色
+				msjls[i].setEnabled(false);//只要不是 ，全部设置为灰色
 			
 			msjls[i].addMouseListener(this);
 		}
+		
 		msjsp= new JScrollPane(msjp2);//不能通过add给jsp里加入内容
 		jpms.add(msjsp,BorderLayout.CENTER);
 
@@ -103,18 +104,18 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		this.add(jphy,"1");//添加第一个卡片，并标记1
 		this.add(jpms,"2");
 		this.setTitle(userId);
-		this.setIconImage(new ImageIcon("images/qq.gif").getImage());
+		this.setIconImage(new ImageIcon("image/head.jpg").getImage());
 		this.setVisible(true);
 		this.setBounds(1100, 100, 250, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	
-	public void updateFriendList(Message mess)//该消息包是包含有当前在线用户的包
+	public void updateFriendList(Message mess)//包含有当前在线用户的包
 	{
 		System.out.println("刷新了");
 		String content= mess.getContent();
-		String[] friend= content.split(" ");//利用空格拆分得到一个当前在线好友组
+		String[] friend= content.split(" ");//空格拆分得到一个当前在线好友组
 		for (int i = 0; i < friend.length; i++) {
 			hyjls[(Integer.parseInt(friend[i])-1)].setEnabled(true);
 			msjls[(Integer.parseInt(friend[i])-1)].setEnabled(true);
@@ -129,9 +130,6 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 		{
 			String friendName= ((JLabel)e.getSource()).getText();
 			ManageImChat.addImChat(username+" "+friendName, new ImChat(username, friendName));
-		/*	Thread thread= new Thread(new QqChat(myId, friendName));
-			thread.start();//这里会出现bug，因为如果正在聊天的时候关掉了窗口，但是线程还是在跑，再次打开的时候就出现此对话窗口线程重复的现象
-*/	
 			}
 	}
 
@@ -162,6 +160,12 @@ public class FriendList extends JFrame implements ActionListener,MouseListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==msjb1)
+		{
+			cl.show(this.getContentPane(), "1");
+		}else if(e.getSource()==hyjb2)
+		{
+			cl.show(this.getContentPane(), "2");
+		}
 	}
 }
